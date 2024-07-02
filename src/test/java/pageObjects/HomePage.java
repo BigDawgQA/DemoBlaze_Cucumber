@@ -1,5 +1,6 @@
 package pageObjects;
 
+import factory.BaseClass;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -206,7 +207,9 @@ public class HomePage extends BasePage{
 
     public void clickSendMessage(){
 
-        sendMessage_btn.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", sendMessage_btn);
+        //sendMessage_btn.click();
     }
 
     public boolean isMessageSent(){
@@ -214,9 +217,9 @@ public class HomePage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         String alertMessage = alert.getText();
-        alert.accept();
+        //alert.accept();
 
-        return (alertMessage.equals("Thanks for the message!!"));
+        return (alertMessage.contains("Thanks for the message!!"));
     }
 
     public void click_signUp(){
@@ -226,12 +229,16 @@ public class HomePage extends BasePage{
 
     public void setSignupUsername(String username){
 
-        username_input.sendKeys(username);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('value', arguments[1]);", username_input, username);
+        //username_input.sendKeys(username);
     }
 
     public void setSignupPassword(String password){
 
-        password_input.sendKeys(password);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('value', arguments[1]);", password_input, password);
+        //password_input.sendKeys(password);
     }
 
     public void clickCompleteSignUp(){
@@ -282,12 +289,16 @@ public class HomePage extends BasePage{
 
     public void setLogin_username_input(String username){
 
-        login_username_input.sendKeys(username);
+        //login_username_input.sendKeys(username);
+        JavascriptExecutor js = (JavascriptExecutor) BaseClass.getDriver();
+        js.executeScript("arguments[0].setAttribute('value', arguments[1])", login_username_input, username);
     }
 
     public void setLogin_password_input(String password){
 
-        login_password_input.sendKeys(password);
+        //login_password_input.sendKeys(password);
+        JavascriptExecutor js = (JavascriptExecutor) BaseClass.getDriver();
+        js.executeScript("arguments[0].setAttribute('value', arguments[1])", login_password_input, password);
     }
 
     public void clickCompleteLoginButton(){

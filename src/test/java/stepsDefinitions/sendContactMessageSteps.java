@@ -32,13 +32,15 @@ public class sendContactMessageSteps {
     }
 
     @When("user click send message")
-    public void user_click_send_message() {
+    public void user_click_send_message() throws InterruptedException {
 
         homePage.clickSendMessage();
+        Thread.sleep(7000);
     }
 
     @Then("Thanks for the message!! should be displayed")
     public void thanks_for_the_message_should_be_displayed() {
+
 
         Assert.assertTrue(homePage.isMessageSent());
     }
