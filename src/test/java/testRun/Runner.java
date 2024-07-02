@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-//        features = {".\\Features"},
-        features = {"@target/rerun.txt"},
+        features = {".\\Features"},
+//        features = {"@target/rerun.txt"},
 
         glue = {"stepsDefinitions", "hooks"},
         plugin = {
